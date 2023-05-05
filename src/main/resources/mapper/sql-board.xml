@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.onepiece.onepiece.mapper.BoardMapper">
+
+
+    <resultMap id="codeDTO" type="com.onepiece.onepiece.dto.CodeDTO">
+        <result property="COMM_CD" column="COMM_CD"/>
+        <result property="COMM_NM" column="COMM_NM"/>
+
+    </resultMap>
+
+    <resultMap id="boardResultMap" type="com.onepiece.onepiece.dto.BoardDTO">
+        <id property="CHAR_ID" column="CHAR_ID"/>
+        <result property="CHAR_GRP" column="CHAR_GRP"/>
+        <result property="CHR_NAME" column="CHR_NAME"/>
+        <result property="CHAR_ALIAS" column="CHAR_ALIAS"/>
+        <result property="CHR_AGE" column="CHR_AGE"/>
+        <result property="CHR_HEIGHT" column="CHR_HEIGHT"/>
+        <result property="CHAR_HOME" column="CHAR_HOME"/>
+        <result property="CHAR_BOUNTY" column="CHAR_BOUNTY"/>
+        <result property="CHAR_ABILITY" column="CHAR_ABILITY"/>
+        <result property="CHAR_BLNG" column="CHAR_BLNG"/>
+        <collection property="codeDTO" resultMap="codeDTO"/>
+    </resultMap>
+
+
+
+    <select id="selectBoardList" resultMap="boardResultMap">
+
+    SELECT CHAR_ID, CHAR_GRP, CHR_NAME, CHAR_ALIAS, BIRTH_DE, CHR_AGE,CHR_HEIGHT, CHAR_BOUNTY, CHAR_HOME, CHAR_ABILITY, CHAR_BLNG
+    FROM CHAR_INFO
+</select>
+
+
+    <select id="getBoard"  parameterType="java.lang.Integer"  resultMap="boardResultMap">
+
+        SELECT CHA.CHAR_GRP,CHA.CHAR_ALIAS,CHA.CHR_NAME,CHA.CHAR_BOUNTY,CSM.COMM_NM
+        FROM CHAR_INFO CHA
+        LEFT OUTER JOIN COM_STD_MGT CSM ON CHA.CHAR_HOME=CSM.COMM_CD
+        WHERE CHAR_ID=#{CHAR_ID}
+    </select>
+
+
+
+
+</mapper>

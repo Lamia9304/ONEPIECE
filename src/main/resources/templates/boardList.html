@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
+<head>
+    <title>board</title>
+<!--    <link rel="stylesheet" th:href="@{/css/style.css}"></link>-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white sticky" data-offset="300">
+            <div class="container">
+                <a href="#" class="navbar-brand">Seo<span class="text-primary">Gram.</span></a>
+
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapsed" id="navbarContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="service.html">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="blog.html">Blog</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary ml-lg-2" href="#">Free Analytics</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="page-banner">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-md-6">
+                        <nav aria-label="Breadcrumb">
+                            <ul class="breadcrumb justify-content-center py-0 bg-transparent">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active">Contact</li>
+                            </ul>
+                        </nav>
+                        <h1 class="text-center">Contact Us</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <h2>밀짚모자일당</h2>
+    <table class="table" id="article-table">
+<!--                                                         -->
+        <thead>
+        <tr>
+            <th scope="col">그룹</th>
+            <th scope="col">이명</th>
+            <th scope="col">이름</th>
+            <th scope="col">현상금</th>
+            <th scope="col">출신지</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
+            <td th:text="${list.CHAR_GRP}"></td>
+            <td th:text="${list.CHAR_ALIAS}"></td>
+            <td><a th:text="${list.CHR_NAME}" th:href="@{/board/view(id=${list.CHAR_ID})}"></a></td>
+            <td th:text="${list.CHAR_BOUNTY}"></td>
+            <td th:text="${list.CHAR_HOME}"></td>
+
+        </tr>
+        <tr th:unless="${#lists.size(list)} > 0">
+            <td colspan="4">조회된 결과가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

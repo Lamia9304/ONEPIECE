@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="<http://www.thymeleaf.org>">
+<head>
+    <title>board</title>
+    <!--    <link rel="stylesheet" th:href="@{/css/style.css}"></link>-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>밀짚모자일당</h2>
+    <table class="table table-hover" id="article-table">
+        <!--                                                         -->
+        <thead>
+        <tr>
+            <th scope="col">그룹</th>
+            <th scope="col">이명</th>
+            <th scope="col">이름</th>
+            <th scope="col">현상금</th>
+            <th scope="col">출신지</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+
+            <td class="active" th:text="${dto.CHAR_GRP}">  </td>
+            <td th:text="${dto.CHAR_ALIAS}"></td>
+            <td th:text="${dto.CHR_NAME}"></td>
+            <td th:text="${dto.CHAR_BOUNTY}"></td>
+            <td th:text="${dto.codeDTO.COMM_NM}"></td>
+
+        </tr>
+
+        </tbody>
+    </table>
+
+    <h1></h1>
+</div>
+</body>
+</html>
